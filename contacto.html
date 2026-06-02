@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Felipe | Perfil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside class="sidebar">
+            <div class="profile-container">
+                <img src="jair.jpg" alt="Foto de Lucas" class="profile-img">
+                <h2>Lucas Felipe</h2>
+                <p class="role">Software Developer</p>
+            </div>
+            <nav class="sidebar-menu">
+                <ul>
+                    <li><a href="index.html">Perfil Profesional xd</a></li>
+                    <li><a href="proyectos.html">Proyectos(cloude)</a></li>
+                    <li><a href="recomendaciones.html">Recomendaciones</a></li>
+                    <li><a href="contacto.html" class="active">Dejame un mensaje :v</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-navbar">
+                <span>Ingeniería en Informática y Sistemas | UNAS-FIIS</span>
+                <span>v 2.0.26</span>
+            </header>
+            <div class="content-wrapper">
+                <section class="section-card">
+                    <h2 class="section-title">Caja de Mensajes Cifrados</h2>
+                    <div class="card-body">
+                        <p>Escribe tu nombre y un mensaje corto (máximo 25 palabras).</p>
+
+                        <!-- Formulario para recolectar datos -->
+                        <form id="contactForm" action="https://formspree.io/f/mojbgwow" method="POST">
+                            <input type="text" name="nombre" id="userName" required placeholder="Tu nombre..."
+                                style="width: 100%; margin-bottom: 10px; padding: 10px;">
+
+                            <textarea name="mensaje" id="userMessage" required placeholder="Escribe tu mensaje aquí..."
+                                style="width: 100%; height: 80px; padding: 10px;"></textarea>
+
+                            <div class="char-count">Palabras: <span id="wordCount">0</span>/25</div>
+                            <button type="submit" class="btn-primary" style="margin-top: 10px;">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const messageInput = document.getElementById('userMessage');
+        const wordCountSpan = document.getElementById('wordCount');
+
+        messageInput.addEventListener('input', () => {
+            const text = messageInput.value.trim();
+            // Divide el texto por espacios para contar palabras
+            const words = text === "" ? [] : text.split(/\s+/);
+
+            if (words.length > 25) {
+                // Si pasa de 25, corta el texto
+                const truncated = words.slice(0, 25).join(" ");
+                messageInput.value = truncated;
+                wordCountSpan.innerText = 25;
+            } else {
+                wordCountSpan.innerText = words.length;
+            }
+        });
+    </script>
+</body>
+
+</html>
